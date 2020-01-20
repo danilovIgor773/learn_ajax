@@ -3,6 +3,7 @@ import {Route, NavLink } from 'react-router-dom';
 
 import Posts from '../Blog/Posts/Posts';
 import NewPost from '../Blog/NewPost/NewPost';
+import FullPost from '../Blog/FullPost/FullPost';
 import './Blog.css';
 
 class Blog extends Component {
@@ -41,6 +42,7 @@ class Blog extends Component {
                 <Route path='/' render={() => <h1>Home test2!</h1>}></Route>} */}
                 <Route path='/' exact component={Posts}></Route>
                 <Route path='/new-post' component={NewPost}></Route>
+                <Route path='/:id' component={FullPost}></Route>
             </div>
         );
     }
