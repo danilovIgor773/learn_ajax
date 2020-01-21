@@ -3,7 +3,6 @@ import {Route, NavLink, Switch } from 'react-router-dom';
 
 import Posts from '../Blog/Posts/Posts';
 import NewPost from '../Blog/NewPost/NewPost';
-import FullPost from '../Blog/FullPost/FullPost';
 import './Blog.css';
 
 class Blog extends Component {
@@ -17,12 +16,12 @@ class Blog extends Component {
                     <nav>
                         <ul>
                             <li>
-                                <NavLink to="/" exact activeClassName='my-active'
+                                <NavLink to="/posts/" exact activeClassName='my-active'
                                     activeStyle={{
                                         color: '#fa923f',
                                         textDecoration: 'underline'
                                     }}
-                                    >Home
+                                    >Posts
                                 </NavLink>
                             </li>
                             <li>
@@ -38,12 +37,11 @@ class Blog extends Component {
                     </nav>        
                 </header>
                 
-                {/* {<Route path='/' exact render={() => <h1>Home test!</h1>}></Route>
+                {/* {<Route path='/' exact render={() => <h1>Home test!</h1>}></Route >
                 <Route path='/' render={() => <h1>Home test2!</h1>}></Route>} */}
-                <Switch>
-                    <Route path='/' exact component={Posts}></Route>
+                <Switch>                    
                     <Route path='/new-post' component={NewPost}></Route>
-                    <Route path='/:id' component={FullPost}></Route>
+                    <Route path='/posts' component={Posts}></Route>                    
                 </Switch>                
             </div>
         );

@@ -9,16 +9,29 @@ class FullPost extends Component {
     }
 
     componentDidMount(){
-        console.log(this.props);
-        
+        console.log(this.props);        
+        this.loadData();
+    }
+
+    //To solve the problem when clicking on one of posts loaded in /posts page to show a fullPost, we need to use componentDidUpdate() to 
+    //click handler work properly and show the fullPost by given id. loadData separated method to be used both in componentDidMount and
+    //componentDidUpdate
+
+    componentDidUpdate(){
+        this.loadData();
+    }
+
+    loadData () {
         if(this.props.match.params.id){
-            if(!this.state.loadedPost || (this.state.loadedPost && this.state.loadedPost.id !== this.props.id)){
+            //Here we check if the data was not loaded yet or data was loaded but the id doesnt match with a choosen one...
+            //And now in the equality check we also compare to the id taken from url params (roter-related props) and dynamically convert it to Number!
+            if(!this.state.loadedPost || (this.state.loadedPost && this.state.loadedPost.id !== +this.props.match.params.id)){
                 axios.get('/posts/' + this.props.match.params.id)
                     .then(response => {
                         this.setState({loadedPost: response.data})
                 })
             }            
-        }        
+        }
     }
 
     deletePostHandler = () => {
